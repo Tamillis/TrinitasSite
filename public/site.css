@@ -11,11 +11,15 @@
     /* Dark Oxblood (Buttons/Critical Info) */
 }
 
+* {
+    box-sizing: border-box;
+}
+
 /* CORE */
 body {
     margin: 0px;
     padding: 0px;
-    width: 100vw;
+    width: calc(100vw-20px);
     height: 100vh;
     background: var(--bright);
 }
@@ -46,26 +50,50 @@ body {
 
 .article h2,
 .article h3 {
-    background: var(--dark);
+    background: var(--less-dark);
     color: var(--less-bright);
     padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
     margin-top: 0;
-    
-    padding: 1rem 15% 1rem 2rem; /* Give the point room so text doesn't overlap */
-    
-    /* This scales the SVG path to the size of the header */
-    clip-path: url(#dagger-mask);
-    
-    /* Aesthetic touch for the "Dusty" vibe */
-    border-left: 4px solid var(--contrast);
-    display: inline-block; /* Helps the shape wrap the text better */
-    min-width: 200px;
+
+    padding: 0.5em 1em;
+    padding-right: calc(100% - 300px);
+    clip-path: polygon(0% 0%, 200px 0%, 100% 50%, 200px 100%, 0% 100%);
+}
+
+.article h4 {
+    text-decoration: underline;
+    margin: 1em 0; 
+}
+
+.article p {
+    margin: 1.333em 0;
+    line-height: 1.333em;
+}
+
+.article blockquote {
+    background: var(--contrast);
+    color: var(--less-bright);
+    margin: 0.333em 0;
+    padding: 0 2em;
+    max-width: fit-content;
 }
 
 .article a {
     color: var(--contrast);
     font-weight: 600;
     text-decoration: none;
+}
+
+.article table {
+    border-collapse: collapse;
+    border: 1px var(--less-dark) solid;
+    margin-bottom: 1em;
+    text-align: right;
+}
+
+.article td, .article th {
+    padding: 4px 0.5em;
+    border-bottom: 1px var(--less-dark) solid;
 }

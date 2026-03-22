@@ -1,11 +1,9 @@
 <template>
-    <div class="wrapper" @click="handleNavigate">
-        <div class="content">
-            <div class="header"></div>
+    <div class="content" @click="handleNavigate">
+        <div class="header"></div>
 
-            <div v-if="loading" class="loader">Loading...</div>
-            <article v-else class="article" v-html="renderedHtml"></article>
-        </div>
+        <div v-if="loading" class="loader">Loading...</div>
+        <article v-else class="article" v-html="renderedHtml"></article>
     </div>
 </template>
 
@@ -23,7 +21,7 @@ const currentTheme = ref('parchment');  // 'parchment', 'citadel' or 'slate'
 
 // Customised Markdown Renderer
 const renderer = new marked.Renderer();
-renderer.link = ({href, title, text}) => {
+renderer.link = ({ href, title, text }) => {
     const isInternal = href.startsWith('/') || href.startsWith('#');
     const attr = isInternal ? `data-internal="true"` : `target="_blank"`;
     return `<a href="${href}" title="${title}" ${attr}>${text}</a>`;
@@ -67,5 +65,4 @@ onMounted(() => fetchDoc(props.docName));
 watch(() => props.docName, (newVal) => fetchDoc(newVal));
 </script>
 
-<style lang="css" scoped>
-</style>
+<style lang="css" scoped></style>
