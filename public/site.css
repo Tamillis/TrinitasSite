@@ -1,0 +1,71 @@
+:root {
+    --dark: #2C241B;
+    /* Deep Charred Brown (Headers/Text) */
+    --less-dark: #4E3B31;
+    /* Muted Earth (Subheaders) */
+    --less-bright: #E8DCC4;
+    /* Aged Parchment (UI Elements/Cards) */
+    --bright: #F5F1E6;
+    /* Dusty Page (Main Background) */
+    --contrast: #8B0000;
+    /* Dark Oxblood (Buttons/Critical Info) */
+}
+
+/* CORE */
+body {
+    margin: 0px;
+    padding: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: var(--bright);
+}
+
+/* THEME */
+.wrapper {
+    padding: 2rem;
+}
+
+.content {
+    background: var(--less-bright);
+    color: var(--less-dark);
+}
+
+.header {
+    height: 2rem;
+    background: var(--dark);
+    box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 2rem;
+}
+
+.article {
+    padding: 0 10%;
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: 'Spectral', sans-serif;
+}
+
+.article h2,
+.article h3 {
+    background: var(--dark);
+    color: var(--less-bright);
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+    
+    padding: 1rem 15% 1rem 2rem; /* Give the point room so text doesn't overlap */
+    
+    /* This scales the SVG path to the size of the header */
+    clip-path: url(#dagger-mask);
+    
+    /* Aesthetic touch for the "Dusty" vibe */
+    border-left: 4px solid var(--contrast);
+    display: inline-block; /* Helps the shape wrap the text better */
+    min-width: 200px;
+}
+
+.article a {
+    color: var(--contrast);
+    font-weight: 600;
+    text-decoration: none;
+}
