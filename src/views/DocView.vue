@@ -1,7 +1,5 @@
 <template>
     <div class="content" @click="handleNavigate">
-        <div class="header"></div>
-
         <div v-if="loading" class="loader">Loading...</div>
         <article v-else class="article" v-html="renderedHtml"></article>
     </div>
@@ -17,7 +15,6 @@ const router = useRouter();
 
 const rawMarkdown = ref('');
 const loading = ref(true);
-const currentTheme = ref('parchment');  // 'parchment', 'citadel' or 'slate'
 
 // Customised Markdown Renderer
 const renderer = new marked.Renderer();

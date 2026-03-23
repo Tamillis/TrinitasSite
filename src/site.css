@@ -3,7 +3,7 @@
     /* Deep Charred Brown (Headers/Text) */
     --less-dark: #4E3B31;
     /* Muted Earth (Subheaders) */
-    --less-bright: #E8DCC4;
+    --less-bright: #ebebeb;
     /* Aged Parchment (UI Elements/Cards) */
     --bright: #F5F1E6;
     /* Dusty Page (Main Background) */
@@ -25,32 +25,22 @@ body {
 }
 
 /* THEME */
-.wrapper {
-    padding: 2rem;
-}
-
 .content {
-    background: var(--less-bright);
     color: var(--less-dark);
-}
-
-.header {
-    height: 2rem;
-    background: var(--dark);
-    box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.2);
-    margin-bottom: 2rem;
+    background: var(--less-bright);
+    overflow: auto;
+    width: calc(100% - 400px);
+    margin: 0 auto;
 }
 
 .article {
-    padding: 0 10%;
-    max-width: 900px;
     margin: 0 auto;
     font-family: 'Spectral', sans-serif;
 }
 
 .article h2,
 .article h3 {
-    background: var(--less-dark);
+    background: linear-gradient(90deg, var(--less-dark), var(--less-bright));
     color: var(--less-bright);
     padding: 0.5rem 1rem;
     display: flex;
@@ -64,12 +54,14 @@ body {
 
 .article h4 {
     text-decoration: underline;
-    margin: 1em 0; 
+    margin: 0.5em 0;
+    padding: 0em 1em;
 }
 
 .article p {
     margin: 1.333em 0;
     line-height: 1.333em;
+    padding: 0 1em;
 }
 
 .article blockquote {
