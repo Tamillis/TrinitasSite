@@ -1,33 +1,37 @@
 :root {
-    --dark: #2C241B;
+    --dark: #1b1815;
     /* Deep Charred Brown (Headers/Text) */
-    --less-dark: #4E3B31;
+    --less-dark: #2c211b;
     /* Muted Earth (Subheaders) */
-    --less-bright: #ebebeb;
+    --less-bright: #e6e4d6;
     /* Aged Parchment (UI Elements/Cards) */
-    --bright: #F5F1E6;
+    --bright: #ffffff;
     /* Dusty Page (Main Background) */
-    --contrast: #8B0000;
+    --highlight: #9e0000;
     /* Dark Oxblood (Buttons/Critical Info) */
+    --contrast: #a18f3b; 
 }
 
 * {
     box-sizing: border-box;
+    font-family: 'Spectral', sans-serif;
 }
 
-/* CORE */
 body {
     margin: 0px;
     padding: 0px;
     width: calc(100vw-20px);
     height: 100vh;
-    background: var(--bright);
+    background: var(--less-bright);
 }
 
 /* THEME */
+.title-font {
+    font-family: 'Cinzel', serif;
+}
+
 .content {
     color: var(--less-dark);
-    background: var(--less-bright);
     overflow: auto;
     width: calc(100% - 400px);
     margin: 0 auto;
@@ -35,7 +39,6 @@ body {
 
 .article {
     margin: 0 auto;
-    font-family: 'Spectral', sans-serif;
 }
 
 .article h2,
@@ -45,7 +48,7 @@ body {
     padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
-    margin-top: 0;
+    margin: 1em 0;
 
     padding: 0.5em 1em;
     padding-right: calc(100% - 300px);
@@ -59,21 +62,21 @@ body {
 }
 
 .article p {
-    margin: 1.333em 0;
+    margin: 1em 0;
     line-height: 1.333em;
     padding: 0 1em;
 }
 
 .article blockquote {
     background: var(--contrast);
-    color: var(--less-bright);
+    color: var(--bright);
     margin: 0.333em 0;
     padding: 0 2em;
     max-width: fit-content;
 }
 
 .article a {
-    color: var(--contrast);
+    color: var(--highlight);
     font-weight: 600;
     text-decoration: none;
 }

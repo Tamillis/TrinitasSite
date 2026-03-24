@@ -10,11 +10,17 @@
             <router-link v-for="doc in docs" :to="'/trinitas/' + doc" class="nav-item">{{ toCapitalised(doc)
                 }}</router-link>
         </div>
+        <div class="menu-links">
+            <router-link v-for="link in links" :to="'/trinitas/' + link" class="nav-item">{{ toCapitalised(link)
+                }}</router-link>
+        </div>
     </nav>
 </template>
 
 <script setup>
 const docs = ["core", "combat", "character-creation", "role", "equipment", "magic", "stat-blocks", "appendices", "design-notes"];
+
+const links = ["powers", "character-creator"]
 
 function toCapitalised(snakeCase) {
     return snakeCase
@@ -26,12 +32,17 @@ function toCapitalised(snakeCase) {
 
 <style scoped>
 .topbar {
-    background: var(--dark);
+    position: sticky;
+    top: -5%;
+
+    z-index: 10;
+
+    background: linear-gradient(0.5turn, var(--dark) 33%, var(--less-dark));
     padding: 1rem 2rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-bottom: 2px solid var(--contrast);
+    border-bottom: 4px solid var(--contrast);
 }
 
 @media screen and (min-width: 1000px) {
@@ -41,17 +52,15 @@ function toCapitalised(snakeCase) {
 }
 
 .title {
-    font-family: 'Cinzel', serif;
-    color: var(--bright);
+    color: var(--contrast);
     font-size: 2rem;
     letter-spacing: 0.33em;
-    margin-bottom: 0.5rem;
 }
 
 .menu-links {
     display: flex;
     gap: 0;
-    margin: 0.5em;
+    margin: 0px 0.5em;
     flex-wrap: wrap;
     width: calc(100% - 400px);
     justify-content: center;
