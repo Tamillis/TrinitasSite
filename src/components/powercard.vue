@@ -4,11 +4,7 @@
 
         <div class="card-divider"></div>
 
-        <div class="tags">
-            <span v-for="tag in power.tag" :key="tag" class="tag-badge">
-                {{ tag }}
-            </span>
-        </div>
+        <Tags :tags="power.tag" />
 
         <section class="card-body">
 
@@ -31,8 +27,9 @@
 <script setup>
 import { marked } from 'marked';
 import { ref, onMounted, onUnmounted } from 'vue';
+import Tags from './Tags.vue';
 
-const props = defineProps({ power: Object });
+const props = defineProps({ power: Object, step: Number });
 const cardElement = ref(null);
 const rowSpan = ref(1);
 
@@ -40,12 +37,7 @@ const updateSpan = () => {
   if (cardElement.value) {
     const height = cardElement.value.getBoundingClientRect().height;
     
-    // 2. Calculate spans: (Height + Gap) / (RowHeight + Gap)
-    // We use 10px for rowHeight and 20px for gap as defined in parent CSS
-    const rowHeight = 10;
-    const gap = 20;
-    
-    const spans = Math.ceil((height + gap) / (rowHeight + gap));
+    const spans = Math.ceil(height / props.step);
     rowSpan.value = spans;
   }
 };
@@ -89,22 +81,6 @@ onUnmounted(() => observer.disconnect());
     margin: 0px;
     font-size: 1.5em;
     color: var(--less-dark);
-}
-
-.tags {
-    display: flex;
-    gap: 0.5em;
-    flex-wrap: wrap;
-}
-
-.tag-badge {
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    background: rgba(139, 69, 19, 0.15);
-    padding: 2px 6px;
-    border-radius: 2px;
-    letter-spacing: 0.5px;
-    font-weight: bold;
 }
 
 .card-divider {
