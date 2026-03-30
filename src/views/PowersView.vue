@@ -3,7 +3,8 @@
         <div class="search">
             <label class="search-label">
                 <span style="display:none">Search: </span>
-                <input v-model="search" value="" class="input" style="padding: 0.33em;" placeholder="Search by term..." />
+                <input v-model="search" value="" class="input" style="padding: 0.33em;"
+                    placeholder="Search by term..." />
             </label>
             <TagSearch :tags="visibleTags" v-model="activeFilters" />
         </div>
@@ -27,7 +28,7 @@ import { ref, computed, onMounted } from 'vue';
 import PowerCard from '../components/PowerCard.vue';
 import TagSearch from '../components/TagSearch.vue';
 
-const search = defineModel({default: ""});
+const search = defineModel({ default: "" });
 
 const powersJson = ref([]);
 let tags = [];
@@ -37,7 +38,7 @@ const powers = computed(() => {
 
     console.log(search.value, Boolean(search.value), activeFilters.value)
 
-    if(search.value) {
+    if (search.value) {
         let clean = (str) => str.toLowerCase().trim();
         let match = (p, term) =>
             clean(p.name).includes(clean(term)) ||
@@ -85,10 +86,6 @@ onMounted(() => fetchJson("powers"));
 
 <style scoped>
 .powers-grid {
-    display: grid;
-    /* This automatically fits as many 320px cards as possible */
-    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
-
     padding: 0 2rem;
     gap: 16px;
     grid-auto-rows: 16px;
@@ -98,10 +95,21 @@ onMounted(() => fetchJson("powers"));
 
 .search {
     display: flex;
-    gap: 1rem;
+    flex-direction: column;
+    gap: 0;
     justify-content: center;
     align-items: center;
 }
 
+@media (min-width:900px) {
+    .powers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    }
 
+    .search {
+        flex-direction: row;
+        gap: 1rem;
+    }
+}
 </style>

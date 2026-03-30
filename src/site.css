@@ -1,15 +1,10 @@
 :root {
     --dark: #1b1815;
-    /* Deep Charred Brown (Headers/Text) */
-    --less-dark: #2c211b;
-    /* Muted Earth (Subheaders) */
-    --less-bright: #e6e4d6;
-    /* Aged Parchment (UI Elements/Cards) */
+    --less-dark: #2c1b1b;
+    --less-bright: #c7c1b3;
     --bright: #ffffff;
-    /* Dusty Page (Main Background) */
     --highlight: #9e0000;
-    /* Dark Oxblood (Buttons/Critical Info) */
-    --contrast: #a18f3b; 
+    --contrast: #b8a13c;
 }
 
 * {
@@ -22,7 +17,7 @@ body {
     padding: 0px;
     width: calc(100vw-20px);
     height: 100vh;
-    background: var(--less-bright);
+    background: linear-gradient(90deg, var(--less-bright), var(--bright) 40%, var(--bright) 60%, var(--less-bright));
 }
 
 /* THEME */
@@ -33,9 +28,16 @@ body {
 .content {
     color: var(--less-dark);
     overflow: auto;
-    width: calc(100% - 400px);
+    width: 100%;
     margin: 0 auto;
 }
+
+@media (min-width:900px) {
+    .content {
+        width: clamp(20em, calc(100% - 400px), 1400px);
+    }
+}
+
 
 .article {
     margin: 0 auto;
@@ -44,15 +46,14 @@ body {
 .article h2,
 .article h3 {
     background: linear-gradient(90deg, var(--less-dark), var(--less-bright));
-    color: var(--less-bright);
+    color: var(--bright);
     padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
     margin: 1em 0;
 
     padding: 0.5em 1em;
-    padding-right: calc(100% - 300px);
-    clip-path: polygon(0% 0%, 200px 0%, 100% 50%, 200px 100%, 0% 100%);
+    clip-path: polygon(0% 0%, 100px 0%, 100% 50%, 100px 100%, 0% 100%);
 }
 
 .article h4 {
@@ -88,17 +89,20 @@ body {
     text-align: right;
 }
 
-.article td, .article th {
+.article td,
+.article th {
     padding: 4px 0.5em;
     border-bottom: 1px var(--less-dark) solid;
 }
+
+
 
 .input {
     outline: none;
     background-color: var(--bright);
 
     font-size: 1em;
-    width: 33em;
+    width: clamp(250px, 75vw, 33em);
     margin: 0.33em 0;
 
     border: 2px solid;
@@ -107,4 +111,10 @@ body {
 
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
         inset 0 0 20px rgba(139, 69, 19, 0.05);
+}
+
+@media (min-width: 900px) {
+    .input {
+        width: clamp(250px, 33vw, 33em);
+    }   
 }

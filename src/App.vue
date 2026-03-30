@@ -6,7 +6,7 @@
 <script setup>
 import './site.css';
 
-import Topbar from './components/topbar.vue';
+import Topbar from './components/Topbar.vue';
 
 </script>
 
