@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import DocView from '../views/DocView.vue';
 import PowersView from '../views/PowersView.vue';
 import CharacterCreatorView from '../views/CharacterCreatorView.vue';
+import CrescensMagicView from '../views/CrescensMagicView.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -16,13 +17,17 @@ const router = createRouter({
       name: 'character-creator',
       component: CharacterCreatorView
     },
+      {
+      path: '/crescens/magic',
+      name: 'crescens-magic',
+      component: CrescensMagicView
+    },
     {
       path: '/trinitas/:docName',
       name: 'Document',
       component: DocView,
       props: true // Passes :docName as a prop to the component
     },
-    // Optional: Redirect root to character creation
     {
       path: '/', 
       redirect: '/trinitas/core' 
