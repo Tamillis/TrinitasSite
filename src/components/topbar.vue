@@ -1,34 +1,50 @@
 <template>
     <nav class="topbar">
         <div class="title">
-            TRINITAS
+            {{ title }}
 
-            <span @click="collapsed = !collapsed" class="toggle-btn" :class="{collapsed: collapsed}">&#x23F6;</span>
+            <span @click="collapsed = !collapsed" class="toggle-btn" :class="{ collapsed: collapsed }">▲</span>
         </div>
 
         <div class="decoration-line"></div>
 
-        <div class="menus" :class="{'hidden-menu': collapsed}">
+        <div class="menus" :class="{ 'hidden-menu': collapsed }">
             <div class="menu-links">
-                <h5 class="nav-item nav-header">Docs</h5>
-                <router-link v-for="doc in docs" :to="'/trinitas/' + doc" class="nav-item">{{ toCapitalised(doc)
-                    }}</router-link>
+                <h5 class="nav-item nav-header">Trinitas</h5>
+                <router-link v-for="doc in trinitasDocs" :to="'/trinitas/' + doc" class="nav-item">
+                    {{ toCapitalised(doc) }}
+                </router-link>
+            </div>
+            <div class="menu-links">
+                <h5 class="nav-item nav-header">Crescens</h5>
+                <router-link v-for="doc in cresDocs" :to="'/trinitas/' + doc" class="nav-item">
+                    {{ toCapitalised(doc) }}
+                </router-link>
+                <router-link to="/crescens/magic" class="nav-item">
+                    Crescens Magic
+                </router-link>
             </div>
             <div class="menu-links">
                 <h5 class="nav-item nav-header">Links</h5>
-                <router-link v-for="link in links" :to="'/trinitas/' + link" class="nav-item">{{ toCapitalised(link)
-                    }}</router-link>
+                <router-link v-for="link in links" :to="'/trinitas/' + link" class="nav-item">
+                    {{ toCapitalised(link) }}
+                </router-link>
             </div>
         </div>
     </nav>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { useRoute } from 'vue-router';
 
-const docs = ["core", "combat", "character-creation", "role", "equipment", "magic", "stat-blocks", "appendices", "design-notes"];
+const route = useRoute();
+const title = computed(() => route.fullPath.split("/").map(str => toCapitalised(str)).join(" "));
 
-const links = ["powers", "character-creator"]
+const trinitasDocs = ["core", "combat", "character-creation", "role", "equipment", "magic", "stat-blocks", "appendices", "design-notes"];
+const cresDocs = ["crescens-core", "crescens-combat", "crescens-character-creation"];
+const links = ["powers", "character-creator"];
+
 const collapsed = ref(false);
 
 function toCapitalised(snakeCase) {
@@ -56,8 +72,8 @@ function toCapitalised(snakeCase) {
 
 .title {
     color: var(--contrast);
-    font-size: 2rem;
-    letter-spacing: 0.33em;
+    font-size: 1.66rem;
+    letter-spacing: 0.16em;
 }
 
 .menus {
@@ -67,7 +83,7 @@ function toCapitalised(snakeCase) {
     justify-content: left;
 
     max-height: 100vh;
-    overflow:hidden;
+    overflow: hidden;
     transition: all 0.3s ease;
 }
 
@@ -119,14 +135,14 @@ function toCapitalised(snakeCase) {
 }
 
 .toggle-btn {
-  display: inline-block;
-  transition: transform 0.3s ease;
-  letter-spacing: normal;
-  transform-origin: center;
+    display: inline-block;
+    transition: transform 0.3s ease;
+    letter-spacing: normal;
+    transform-origin: center;
 }
 
 .toggle-btn.collapsed {
-  transform: rotate(180deg);
+    transform: rotate(180deg);
 }
 
 .hidden-menu {
