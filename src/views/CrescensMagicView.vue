@@ -1,54 +1,69 @@
 <template>
-    <div class="powers-container" v-if="!loading">
-        <header class="module-header">
-            <h1>Crescens: Magic Module</h1>
-            <h2>Powers</h2>
-        </header>
-
-        <div class="powers-grid">
-            <article v-for="power in magicJson" :key="power.name" class="power-card">
-                <div class="power-header">
-                    <h2>{{ power.name }}</h2>
-                    <span class="stat-tag">{{ power.stat }}</span>
-                </div>
-
-                <div class="power-meta">
-                    <strong>Skill:</strong> {{ power.skill }}
-                </div>
-
-                <p class="power-description">
-                    {{ power.description }}
-                </p>
-
-                <div class="power-section">
-                    <h3>Domain</h3>
-                    <p class="italic">{{ power.domain }}</p>
-                </div>
-
-                <div class="power-section">
-                    <h3>Manifestations</h3>
-                    <p>{{ power.examples }}</p>
-                </div>
-            </article>
+    <div class="content ">
+        <div v-if="loadingCards || loadingDoc">
+            <p>Loading!</p>
         </div>
-    </div>
-    <div v-else class="powers-container">
-        <p>Loading!</p>
+        <div v-else>
+            <h1>Crescens: Magic Module</h1>
+
+            <article class="article crescens" v-html="renderedHtml"></article>
+
+            <h2 class="m0">Powers</h2>
+
+            <div class="powers-grid">
+                <article v-for="power in magicJson" :key="power.name" class="power-card">
+                    <div class="power-header">
+                        <h2>{{ power.name }}</h2>
+                        <span class="stat-tag">{{ power.stat }}</span>
+                    </div>
+
+                    <div class="power-meta">
+                        <strong>Skill:</strong> {{ power.skill }}
+                    </div>
+
+                    <p class="power-description">
+                        {{ power.description }}
+                    </p>
+
+                    <div class="power-section">
+                        <h3>Domain</h3>
+                        <p class="italic">{{ power.domain }}</p>
+                    </div>
+
+                    <div class="power-section">
+                        <h3>Manifestations</h3>
+                        <p>{{ power.examples }}</p>
+                    </div>
+                </article>
+            </div>
+        </div>
     </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { marked } from 'marked';
+import { ref, computed, onMounted } from 'vue';
 
-const loading = ref(true);
+// Customised Markdown Renderer
+const renderer = new marked.Renderer();
+renderer.link = ({ href, title, text }) => {
+    const isInternal = href.startsWith('/') || href.startsWith('#');
+    const attr = isInternal ? `data-internal="true"` : `target="_blank"`;
+    return `<a href="${href}" title="${title}" ${attr}>${text}</a>`;
+};
+
+const loadingCards = ref(true);
+const loadingDoc = ref(true);
 const error = ref("");
 const magicJson = ref([]);
+const txt = ref("");
+const renderedHtml = computed(() => marked.parse(txt.value, { renderer }));
 
 // API handling
-const fetchJson = async (name) => {
-    loading.value = true;
+const fetchCards = async () => {
+    loadingCards.value = true;
     try {
-        const response = await fetch(`/api/${name}`);
+        const response = await fetch('/api/crescens-magic');
         if (!response.ok) throw new Error('File not found');
         let json = await response.json();
 
@@ -56,32 +71,32 @@ const fetchJson = async (name) => {
 
         tags = Array.from(new Set(json.flatMap(p => p.tag))).sort();
     } catch (err) {
-        error.value = `Sorry: '${name}' Not Found. ${err}`;
+        error.value = `Sorry: "crescens-magic" Not Found. ${err}`;
     } finally {
-        loading.value = false;
+        loadingCards.value = false;
+    }
+};
+const fetchDoc = async () => {
+    loadingDoc.value = true;
+    try {
+        const response = await fetch(`/api/docs/crescens-magic.md`);
+        if (!response.ok) throw new Error('File not found');
+        txt.value = await response.text();
+    } catch (err) {
+        error.value = `Sorry: 'docs/crescens-magic' Not Found. ${err}`;
+    } finally {
+        loadingDoc.value = false;
     }
 };
 
-onMounted(() => fetchJson("crescens-magic"));
+onMounted(() => {
+    fetchCards();
+    fetchDoc();
+});
 
 </script>
 
 <style lang="css" scoped>
-.powers-container {
-    font-family: 'Inter', system-ui, sans-serif;
-    color: #2c3e50;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-    background-color: #f9f9f9;
-}
-
-.module-header {
-    border-bottom: 2px solid #2c3e50;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-}
-
 .powers-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -112,7 +127,7 @@ onMounted(() => fetchJson("crescens-magic"));
 }
 
 .stat-tag {
-    background: #2c3e50;
+    background: var(--cool-dark);
     color: white;
     padding: 0.2rem 0.6rem;
     font-size: 0.8rem;
@@ -146,14 +161,5 @@ onMounted(() => fetchJson("crescens-magic"));
 
 .italic {
     font-style: italic;
-}
-
-.power-footer {
-    margin-top: auto;
-    padding-top: 1rem;
-    border-top: 1px dashed #eee;
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: #e67e22;
 }
 </style>

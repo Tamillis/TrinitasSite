@@ -1,7 +1,7 @@
 <template>
     <div class="content" @click="handleNavigate">
         <div v-if="loading" class="loader">Loading...</div>
-        <article v-else class="article" v-html="renderedHtml"></article>
+        <article v-else class="article trinitas" v-html="renderedHtml"></article>
     </div>
 </template>
 

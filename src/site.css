@@ -5,6 +5,7 @@
     --bright: #ffffff;
     --highlight: #9e0000;
     --contrast: #b8a13c;
+    --cool-dark: #2c3e50;
 }
 
 * {
@@ -43,17 +44,16 @@ body {
     margin: 0 auto;
 }
 
-.article h2,
-.article h3 {
+.trinitas h2,
+.trinitas h3 {
     background: linear-gradient(90deg, var(--less-dark), var(--less-bright));
     color: var(--bright);
+    clip-path: polygon(0% 0%, 100px 0%, 100% 50%, 100px 100%, 0% 100%);
     padding: 0.5rem 1rem;
-    display: flex;
-    align-items: center;
     margin: 1em 0;
 
-    padding: 0.5em 1em;
-    clip-path: polygon(0% 0%, 100px 0%, 100% 50%, 100px 100%, 0% 100%);
+    display: flex;
+    align-items: center;
 }
 
 .article h4 {
@@ -82,20 +82,48 @@ body {
     text-decoration: none;
 }
 
-.article table {
+.trinitas table {
     border-collapse: collapse;
     border: 1px var(--less-dark) solid;
     margin-bottom: 1em;
     text-align: right;
+
+    table-layout: fixed;
 }
 
-.article td,
-.article th {
-    padding: 4px 0.5em;
+.trinitas tr, .trinitas tbody, .trinitas thead, .trinitas table {
+    width: fit-content;
+}
+
+.trinitas td,
+.trinitas th {
+    padding: 2px 1rem;
     border-bottom: 1px var(--less-dark) solid;
+    line-height: 1.333em;
+    width: 20%;
 }
 
+.crescens table {
+    border-collapse: collapse;
+    border: 1px var(--less-dark) solid;
+    margin-bottom: 1em;
+}
 
+.crescens tr, .crescens tbody, .crescens thead, .crescens table {
+    width: fit-content;
+}
+
+.crescens td,
+.crescens th {
+    padding: 2px 1rem;
+    border-bottom: 1px var(--less-dark) solid;
+    line-height: 1.333em;
+}
+
+.crescens td:first-child,
+.crescens th:first-child {
+    text-align: right;
+}
 
 .input {
     outline: none;
@@ -117,4 +145,10 @@ body {
     .input {
         width: clamp(250px, 33vw, 33em);
     }   
+}
+
+/* UTILITIES */
+
+.m0 {
+    margin: 0;
 }

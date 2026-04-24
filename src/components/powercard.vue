@@ -54,7 +54,7 @@ onMounted(() => {
 onUnmounted(() => observer.disconnect());
 </script>
 
-<style>
+<style scoped>
 .power-card {
     height: max-content;
 
