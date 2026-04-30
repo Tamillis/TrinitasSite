@@ -39,10 +39,10 @@ import { ref, computed } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
-const title = computed(() => route.fullPath.split("/").map(str => toCapitalised(str)).join(" "));
+const title = computed(() => route.fullPath.split("/").slice(2).map(str => toCapitalised(str)).join(" "));
 
 const trinitasDocs = ["core", "combat", "character-creation", "role", "equipment", "magic", "stat-blocks", "appendices", "design-notes"];
-const cresDocs = ["crescens-core", "crescens-combat", "crescens-character-creation"];
+const cresDocs = ["crescens-core", "crescens-combat", "crescens-character-creation", "crescens-swordplay"];
 const links = ["powers", "character-creator"];
 
 const collapsed = ref(false);
