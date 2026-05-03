@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 import DocView from '../views/DocView.vue';
 import PowersView from '../views/PowersView.vue';
 import CharacterCreatorView from '../views/CharacterCreatorView.vue';
-import CrescensMagicView from '../views/CrescensMagicView.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -16,11 +15,6 @@ const router = createRouter({
       path: '/trinitas/character-creator',
       name: 'character-creator',
       component: CharacterCreatorView
-    },
-      {
-      path: '/crescens/magic',
-      name: 'crescens-magic',
-      component: CrescensMagicView
     },
     {
       path: '/trinitas/:docName',

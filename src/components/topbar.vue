@@ -16,15 +16,6 @@
                 </router-link>
             </div>
             <div class="menu-links">
-                <h5 class="nav-item nav-header">Crescens</h5>
-                <router-link v-for="doc in cresDocs" :to="'/trinitas/' + doc" class="nav-item">
-                    {{ toCapitalised(doc) }}
-                </router-link>
-                <router-link to="/crescens/magic" class="nav-item">
-                    Crescens Magic
-                </router-link>
-            </div>
-            <div class="menu-links">
                 <h5 class="nav-item nav-header">Links</h5>
                 <router-link v-for="link in links" :to="'/trinitas/' + link" class="nav-item">
                     {{ toCapitalised(link) }}
@@ -42,7 +33,6 @@ const route = useRoute();
 const title = computed(() => route.fullPath.split("/").slice(2).map(str => toCapitalised(str)).join(" "));
 
 const trinitasDocs = ["core", "combat", "character-creation", "role", "equipment", "magic", "stat-blocks", "appendices", "design-notes"];
-const cresDocs = ["crescens-core", "crescens-combat", "crescens-character-creation", "crescens-swordplay"];
 const links = ["powers", "character-creator"];
 
 const collapsed = ref(false);
