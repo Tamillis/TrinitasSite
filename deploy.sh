@@ -1,3 +1,7 @@
+if [ ! -d ~/TrinitasSite ]; then
+  git clone https://github.com/Tamillis/TrinitasSite.git ~/TrinitasSite
+fi
+
 cd ~/TrinitasSite
 
 git fetch origin main
