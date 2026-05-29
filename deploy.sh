@@ -1,20 +1,14 @@
 if [ ! -d ~/TrinitasSite ]; then
   git clone https://github.com/Tamillis/TrinitasSite.git ~/TrinitasSite
+  npm install
 fi
 
 cd ~/TrinitasSite
 
 git fetch origin main
 
-if ! git diff --quiet HEAD origin/main -- package.json; then
-    echo "Changes detected in package.json. Running npm install..."
-    git pull origin main
-    npm install --production
-else
-    echo "No changes in package.json. Skipping npm install."
-    git pull origin main
-fi
-
+git pull origin main
+npm install
 npm run build
 
 rm -rf /var/www/personal-site/assets/*
