@@ -4,27 +4,27 @@ import PowersView from '../views/PowersView.vue';
 import CharacterCreatorView from '../views/CharacterCreatorView.vue';
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/trinitas/'),
   routes: [
-        {
-      path: '/trinitas/powers',
+      {
+      path: '/powers',
       name: 'powers',
       component: PowersView
     },
     {
-      path: '/trinitas/character-creator',
+      path: '/character-creator',
       name: 'character-creator',
       component: CharacterCreatorView
     },
     {
-      path: '/trinitas/:docName',
+      path: '/:docName',
       name: 'Document',
       component: DocView,
       props: true // Passes :docName as a prop to the component
     },
     {
       path: '/', 
-      redirect: '/trinitas/core' 
+      redirect: '/core' 
     }
   ]
 });

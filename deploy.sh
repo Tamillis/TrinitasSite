@@ -11,7 +11,7 @@ git pull origin main
 npm install
 npm run build
 
-rm -rf /var/www/personal-site/assets/*
-rm  /var/www/personal-site/index.html
-cp dist/index.html /var/www/personal-site/index.html
-cp -r dist/assets/* /var/www/personal-site/assets
+rm -rf /var/www/trinitas-site/assets/*
+rm  /var/www/trinitas-site/index.html
+cp dist/index.html /var/www/trinitas-site/index.html
+cp -r dist/assets/* /var/www/trinitas-site/assets
