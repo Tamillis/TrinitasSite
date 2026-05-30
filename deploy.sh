@@ -13,4 +13,4 @@ npm run build
 
 rm -rf /var/www/trinitas-site/assets/*
 rm  /var/www/trinitas-site/index.html
-cp -r dist/ /var/www/trinitas-site/
+cp -r dist/* /var/www/trinitas-site/

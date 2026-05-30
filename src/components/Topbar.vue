@@ -11,13 +11,13 @@
         <div class="menus" :class="{ 'hidden-menu': collapsed }">
             <div class="menu-links">
                 <h5 class="nav-item nav-header">Trinitas</h5>
-                <router-link v-for="doc in trinitasDocs" :to="'/trinitas/' + doc" class="nav-item">
+                <router-link v-for="doc in trinitasDocs" :to="doc" class="nav-item">
                     {{ toCapitalised(doc) }}
                 </router-link>
             </div>
             <div class="menu-links">
                 <h5 class="nav-item nav-header">Links</h5>
-                <router-link v-for="link in links" :to="'/trinitas/' + link" class="nav-item">
+                <router-link v-for="link in links" :to="link" class="nav-item">
                     {{ toCapitalised(link) }}
                 </router-link>
             </div>
