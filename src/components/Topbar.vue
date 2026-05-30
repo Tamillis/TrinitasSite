@@ -21,6 +21,10 @@
                     {{ toCapitalised(link) }}
                 </router-link>
             </div>
+
+            <div class="menu-links" style="width: 100%">
+                <a href="https://bell-soft.co.uk" class="nav-item right">Back to main site &larr;</a>
+            </div>
         </div>
     </nav>
 </template>
@@ -30,7 +34,7 @@ import { ref, computed } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
-const title = computed(() => route.fullPath.split("/").slice(2).map(str => toCapitalised(str)).join(" "));
+const title = computed(() => route.fullPath.split("/").slice(1).map(str => toCapitalised(str)).join(" "));
 
 const trinitasDocs = ["core", "combat", "character-creation", "role", "equipment", "magic", "stat-blocks", "appendices", "design-notes"];
 const links = ["powers", "character-creator"];
@@ -88,8 +92,6 @@ function toCapitalised(snakeCase) {
     width: fit-content;
     justify-content: start;
     align-items: baseline;
-
-
 }
 
 .nav-item {

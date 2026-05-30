@@ -21,6 +21,14 @@ body {
     background: linear-gradient(90deg, var(--less-bright), var(--bright) 40%, var(--bright) 60%, var(--less-bright));
 }
 
+a {
+    text-decoration: none;
+}
+
+a:any-link {
+    color: var(--less-dark);
+}
+
 /* THEME */
 .title-font {
     font-family: 'Cinzel', serif;
@@ -151,4 +159,13 @@ body {
 
 .m0 {
     margin: 0;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.right {
+    justify-self: end;
 }
